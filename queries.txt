@@ -1,0 +1,36 @@
+#1 query for creating user
+INSERT INTO USER (user_name, email, password, role) VALUES ('xyz1', 'xyz1@gmail.com', '123456789', 'Producer');
+
+#2 query for creating messages
+INSERT INTO MESSAGE (subject, content, user_id) VALUES ('Greeting', 'Hello world', 1);
+
+#3 query for subscribing producer
+INSERT INTO Subscribe (user_id_follow, user_id_following, status) VALUES (3,1,1);
+
+#4 query for Getting list of users
+SELECT * FROM USER;
+
+#5 query for getting list of content producers
+SELECT * from USER WHERE role='Producer';
+
+#6 query for getting list of content subscriber
+SELECT * from USER WHERE role='Subscriber';
+
+#7 query for getting list of content subscriber, subscribed on specific producer
+SELECT user_id, user_name, email, role FROM USER WHERE user_id in (SELECT user_id_follow FROM SUBSCRIBE WHERE user_id_following=1 and status=1);
+
+#8 query for getting all  messages
+SELECT * FROM MESSAGE;
+
+#9 query for getting all messages created by specific producer
+SELECT * FROM MESSAGE WHERE user_id=1;
+
+#10 query for getting all messages for given subscriber 
+SELECT * FROM MESSAGE WHERE user_id in (SELECT user_id_following FROM SUBSCRIBE WHERE user_id_follow=1 and status=1);
+
+
+
+
+
+
+
